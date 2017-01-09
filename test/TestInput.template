@@ -1,0 +1,16 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+
+  "Description" : "projectname Stack",
+  "Parameters" : { "cfnex::include" : [ "./parameters.json" ] },
+
+  "Resources" : {
+    "TestInstance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "123",
+        "UserData": { "Fn::Base64" : { "cfnex::include-file2" : [ "./boot.sh" ] } }
+      }
+    }
+  }
+}

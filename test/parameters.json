@@ -1,0 +1,6 @@
+{
+  "EcsCluster": {
+    "Type": "String",
+    "Description": "ECS Cluster"
+  }
+}

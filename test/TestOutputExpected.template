@@ -1,0 +1,43 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "projectname Stack",
+  "Parameters": {
+    "EcsCluster": {
+      "Type": "String",
+      "Description": "ECS Cluster"
+    }
+  },
+  "Resources": {
+    "TestInstance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "123",
+        "UserData": {
+          "Fn::Base64": {
+            "Fn::Join": [
+              "\n",
+              [
+                "#!/bin/bash",
+                "",
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "echo ECS_CLUSTER=",
+                      {
+                        "Ref": "EcsCluster"
+                      },
+                      "  >> /etc/ecs/ecs.config"
+                    ]
+                  ]
+                },
+                "ls",
+                ""
+              ]
+            ]
+          }
+        }
+      }
+    }
+  }
+}
